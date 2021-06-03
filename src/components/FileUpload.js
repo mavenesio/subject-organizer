@@ -1,8 +1,8 @@
 import React from 'react';
 import { FileDrop } from 'react-file-drop';
+import './FileUpload.css'
 
 const FileUpload = ({setSubjects}) => {
-  const styles = { border: '1px solid black', width: 600, color: 'black', padding: 20 };
 
   const loadFile = (file) => {
     var reader = new FileReader();
@@ -26,14 +26,13 @@ const FileUpload = ({setSubjects}) => {
   }
 
   return (
-    <div>
-      <div style={styles}>
-        <FileDrop
-          onDrop={(files, event) => loadFile(files[0])}
-        >
-          Drop some files here!
-        </FileDrop>
-      </div>
+    <div className="container">
+      <FileDrop
+         className="fileDrop"
+        onDrop={(files, event) => loadFile(files[0])}
+      >
+        Drop file here
+      </FileDrop>
     </div>
   );
 };
