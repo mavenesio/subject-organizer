@@ -1,3 +1,4 @@
+import { sum } from 'ramda';
 
 const APPROVED_SUBJECT_COLOR = 'green';
 const AVAILABLE_SUBJECT_COLOR = 'orange';
@@ -30,7 +31,20 @@ const getLineColor = (subjects, { source, target }) => {
   return NOT_AVAILABLE_SUBJECT_COLOR;
 }
 
+const getProgress = (subjects) => {
+  const total = sum(subjects.map(subject => subject.credits));
+  const completed = sum(subjects.filter(subject => subject.grade >= 4).map(subject => subject.credits));
+  return (Math.round((completed/total) * 100))
+}
+
+const getAverage = (subjects) => {
+  const aprobadas = subjects.filter(subject => subject.grade >= 4).map(subject => subject.grade);
+  return (Math.round((sum(aprobadas)/aprobadas.length)))
+}
+
 export {
   getNodeColor,
   getLineColor,
+  getProgress,
+  getAverage,
 }
