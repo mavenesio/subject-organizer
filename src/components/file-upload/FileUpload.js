@@ -11,7 +11,7 @@ const checkCorrelatives = (subjects) => {
     if ((subject.correlatives.length > 0) && 
         (!subject.correlatives.every(correlative => codes.includes(correlative)))){
       throw new Error(
-        `Some of theses correlatives doesn't exist \"${subject.correlatives.join(' - ')}\". They are in line number ${index}`
+        `Some of theses correlatives doesn't exist "${subject.correlatives.join(' - ')}". They are in line number ${index}`
       );
     }
   })

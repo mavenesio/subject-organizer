@@ -1,8 +1,8 @@
-import React, { useMemo } from 'react';
+import React, { useCallback } from 'react';
 import { getLineColor } from './networkUtils';
 
 const Line = ({ link, subjects, ...restProps }) => {
-  const memoizedValue = useMemo(() => getLineColor(subjects, link), []);
+  const memoizedValue = useCallback(() => getLineColor(subjects, link), [subjects, link]);
   return (
     <line
       {...restProps}
