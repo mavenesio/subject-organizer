@@ -2,34 +2,14 @@ import React, { useEffect, useState }from 'react';
 import Graph from 'react-graph-network';
 import Node from './node';
 import Line from './line';
-import { getNodeColor } from './utils';
-
-
-
+import { getNodes, getLinks } from './networkUtils';
 
 const NetworkGraph = ({ subjects }) => {
   const [data, setData] = useState(undefined);
-
   useEffect(() => {
-    const nodes = subjects.map(subject => ({
-      id: subject.code,
-      name: subject.name,
-      pass: subject.grade >= 4,
-      color: getNodeColor(subjects, subject)
-    })
-  );
-    
-    const links = subjects.reduce((links, subject) => {
-      const newLinks = subject.correlatives.map(correlative => ({
-          source: subject.code,
-          target: correlative,
-      }))
-      return [...links, ...newLinks];
-    },[])
-
     setData({
-      nodes,
-      links,
+      nodes: getNodes(subjects),
+      links: getLinks(subjects),
     })
   }, [subjects]);
   

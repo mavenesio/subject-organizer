@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import NetworkGraph from './components/network-graph';
-import { getProgress, getAverage } from './components/network-graph/utils';
+import { getProgress, getAverage } from './components/utils';
 import FileUpload from './components/file-upload';
 import './App.css';
 
