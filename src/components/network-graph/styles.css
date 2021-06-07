@@ -1,0 +1,9 @@
+.node-description {
+  z-index: 100;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.node-pointer {
+  cursor: pointer;
+}

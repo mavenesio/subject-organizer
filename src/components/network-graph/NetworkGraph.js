@@ -22,10 +22,10 @@ const NetworkGraph = ({ subjects }) => {
             id="graph"
             NodeComponent={Node}
             LineComponent={(props) => <Line {...props} subjects={subjects}/>}
-            nodeDistance={300}
-            zoomDepth={10}
+            nodeDistance={800}
+            zoomDepth={10000}
             enableDrag={true}
-            pullIn={true}
+            pullIn={false}
           />
 
         ) : (null)
