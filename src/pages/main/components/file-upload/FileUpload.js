@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { FileDrop } from 'react-file-drop';
+
 import './FileUpload.css';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -45,7 +46,6 @@ const FileUpload = ({setSubjects}) => {
     fileSelector.addEventListener('change', (event) => {
       const fileList = event.target.files;
       loadFile(fileList[0])
-      console.log(fileList);
     });
     e.preventDefault();
     fileSelector.click();

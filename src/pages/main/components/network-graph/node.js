@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './styles.css';
 
 const fontSize = 14;
@@ -8,9 +8,6 @@ const Node = (props) => {
   const [clicked, setSlicked] = useState(false);
   const { node } = props;
 
-  useEffect(() => {
-    console.log(props)
-  }, []);
     const sizes = {
         radius: radius,
         textSize: fontSize,

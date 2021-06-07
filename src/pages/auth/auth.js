@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import SignIn from './components/sing-in/signIn';
-import SignUp from './components/sing-up/singup';
+import SignIn from './components/sing-in';
+import SignUp from './components/sing-up';
 import { auth } from '../../config';
 import './styles.css';
 import { useHistory } from 'react-router-dom';
