@@ -1,48 +1,21 @@
-import React, { useState } from 'react';
-import NetworkGraph from './components/network-graph';
-import { getProgress, getAverage } from './components/utils';
-import FileUpload from './components/file-upload';
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import Auth from './pages/auth/auth';
+import Main from './pages/main/main';
 import './App.css';
 
-const App = () => {
-  const [subjects, setSubjects] = useState([]);
+function App() {
   return (
-    <div className="app-container">
-      {
-        subjects.length > 0 ? (
-          <>
-            <div className="card side-column">
-              <div className="header-card">
-                <div className="header-title">
-                  {`${getProgress(subjects)} %`}
-                </div>
-                <div className="header-subtitle">
-                  Progreso
-                </div>
-              </div>
-              <div className="header-card">
-                <div className="header-title">
-                  {`${getAverage(subjects)}`}
-                </div>
-                <div  className="header-subtitle">
-                  Promedio
-                </div>
-              </div>
-            </div> 
-            <div className="card network">
-              <NetworkGraph subjects={subjects} />
-            </div> 
-          </>
-        ) : (
-          <div className="card upload">
-            <FileUpload 
-              setSubjects={setSubjects}
-            />
-          </div>
-        )
-      }
+    <div className="App">
+      <Router>
+        <Switch>
+          <Route path='/auth' component={Auth} />
+          <Route path='/main' component={Main} />
+          <Redirect to='/auth' from='*' />
+        </Switch>
+      </Router>
     </div>
-  )
+  );
 }
-  
+
 export default App;
