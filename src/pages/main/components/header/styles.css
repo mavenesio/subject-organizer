@@ -1,0 +1,30 @@
+.header-container {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  box-shadow: 1px 5px 2px rgba(0, 0, 0, 0.1);
+  background-color: #6b6bff;
+  color: #676767;
+}
+
+.header-indicators {
+  display: flex;
+  flex-direction: row;
+}
+
+.header-item {
+  margin: 0 1rem;
+  align-self: center;
+}
+
+.header-item-title {
+  color: black;
+  margin: unset;
+}
+
+.header-item-subtitle {
+  color: white;
+  margin: unset;
+}

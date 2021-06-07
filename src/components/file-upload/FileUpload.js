@@ -86,7 +86,7 @@ const FileUpload = ({setSubjects}) => {
         onDragLeave={() => setStatus('NOT_OVER')}
         onTargetClick={onOpenFileUploader}
       >
-        ¡ Drop file here or click me !
+        <h4>¡ Drop file here or click me !</h4>
       </FileDrop>
       <ToastContainer
         position="top-right"

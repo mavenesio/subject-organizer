@@ -1,0 +1,22 @@
+.app-container {
+  text-align: center;
+  height: 100vh;
+  background-color: #dfdfdf;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border: 1px solid #e8e8e8;
+  min-width: 500px;
+  min-height: 300px;
+  border-radius: 8px;
+  box-shadow: 1px 5px 2px rgba(0, 0, 0, 0.1);
+  color: #676767;
+  width: 98%;
+}
