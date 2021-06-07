@@ -17,17 +17,17 @@ function Auth() {
 
     return (
         <div className='auth'>
-            {authType === 'signIn' ?
-                <div className='auth-container'>
-                    <SignIn />
-                    <p className="p-auth">New here? <span className="span-auth" onClick={() => setAuthType('signUp')}>Create account.</span></p>
-                </div>
-                :
-                <div className='auth-container'>
-                    <SignUp />
-                    <p className="p-auth">Have an account? <span className="span-auth" onClick={() => setAuthType('signIn')}>Sign In.</span></p>
-                </div>
-            }
+          {authType === 'signIn' ?
+              <div className='auth-container'>
+                  <SignIn />
+                  <p className="p-auth">New here? <span className="span-auth" onClick={() => setAuthType('signUp')}>Create account.</span></p>
+              </div>
+              :
+              <div className='auth-container'>
+                  <SignUp />
+                  <p className="p-auth">Have an account? <span className="span-auth" onClick={() => setAuthType('signIn')}>Sign In.</span></p>
+              </div>
+          }
         </div>
     )
 }
