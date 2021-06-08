@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import NetworkGraph from './components/network-graph';
 import { getProgress, getAverage } from './components/utils';
 import FileUpload from './components/file-upload';
-import Header from './components/header/header'
+import Header from './components/header/header';
 
 import './styles.css';
 
