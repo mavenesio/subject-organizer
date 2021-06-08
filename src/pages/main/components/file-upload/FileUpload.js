@@ -26,7 +26,6 @@ const FileUpload = ({setSubjects}) => {
     if(parsedSubject){
       try {
         checkCorrelatives(parsedSubject);
-        toast.error('The file was parsed correctly');
         setSubjects(parsedSubject);
       }catch (err) {
         toast.error(err.message);
@@ -35,9 +34,13 @@ const FileUpload = ({setSubjects}) => {
   }, [parsedSubject]);
 
   const loadFile = (file) => {
-      var reader = new FileReader();
-      reader.onload = parseFile;
-      reader.readAsText(file);
+      if(file.type !== 'text/csv' || file.name.split('.').pop() !== 'csv'){
+        toast.error('Failure reading the file. The extension needs to be .csv');
+      } else {
+        var reader = new FileReader();
+        reader.onload = parseFile;
+        reader.readAsText(file);
+      }
   }
 
   const onOpenFileUploader = (e) => {
