@@ -7,22 +7,23 @@ const NOT_AVAILABLE_SUBJECT_COLOR = 'red';
 const getSubjectByCode = (subjects, code) => subjects.find(subject=> ((subject.code === (code.id || code))))
 const isSubjectApproved = (subject) => (subject.grade || 0) >= 4
 
-const getNodeColor = (subjects, subject) => {
-  
+const getNodeColor = (subjects, subject) => { 
+  //If subject is approved, then green
   if(isSubjectApproved(subject)) return APPROVED_SUBJECT_COLOR;
 
-  if(subject?.correlatives.lenght === 0){
-    return AVAILABLE_SUBJECT_COLOR
-  }
+  //If subject not approved and have no corrrelatives, then orange
+  if(subject?.correlatives.lenght === 0) return AVAILABLE_SUBJECT_COLOR
 
-  const correlativasAprobadas = subject.correlatives.every(
-    correlative => subjects.find(
-      crudSubjet => crudSubjet.code === correlative).grade >=4
-  )
-  return correlativasAprobadas  ? AVAILABLE_SUBJECT_COLOR : NOT_AVAILABLE_SUBJECT_COLOR
+  //If subject not approved but have all correlatives approved, then orange
+  if (subject.correlatives.every( correlative => subjects.find(subject => subject.code === correlative).grade >=4)) {
+    return AVAILABLE_SUBJECT_COLOR;
+  }
+  
+  return NOT_AVAILABLE_SUBJECT_COLOR;
 }
 
 const getLineColor = (subjects, { source, target }) => {
+
   const passSource = isSubjectApproved(getSubjectByCode(subjects, source))
   const passtarget = isSubjectApproved(getSubjectByCode(subjects, target));
 
@@ -30,7 +31,6 @@ const getLineColor = (subjects, { source, target }) => {
   if ((passSource !== passtarget)) return AVAILABLE_SUBJECT_COLOR;
   return NOT_AVAILABLE_SUBJECT_COLOR;
 }
-
 
 const getNodes = (subjects) => (
   subjects.map(subject => ({
@@ -52,23 +52,8 @@ const getLinks = (subjects) => (
   },[])
 )
 
-//Metrics
-const getProgress = (subjects) => {
-  const total = sum(subjects.map(subject => subject.credits));
-  const completed = sum(subjects.filter(subject => isSubjectApproved(subject)).map(subject => subject.credits));
-  return (Math.round((completed/total) * 100))
-}
-
-const getAverage = (subjects) => {
-  const aprobadas = subjects.filter(subject => isSubjectApproved(subject)).map(subject => subject.grade);
-  return (Math.round((sum(aprobadas)/aprobadas.length)))
-}
-
-
 export {
   getLineColor,
-  getProgress,
-  getAverage,
   getLinks,
   getNodes,
 }

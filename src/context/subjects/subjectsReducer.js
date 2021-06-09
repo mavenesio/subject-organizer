@@ -28,7 +28,9 @@ export default (state, action) => {
         return {
             ...state,
             subjects: action.payload,
-            hasSubjects: action.payload.length > 0,
+            hasSubjects: true,
+            progress: getProgress(action.payload),
+            average: getAverage(action.payload),
         }
     }
     default:

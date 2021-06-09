@@ -11,6 +11,8 @@ const SubjectsState = ({children}) => {
     const initialState = {
         subjects: [],
         hasSubjects: false,
+        progress: '-',
+        average: '-',
     };
 
     const [state, dispatch] = useReducer(SubjectsReducer, initialState);
@@ -26,6 +28,8 @@ const SubjectsState = ({children}) => {
             value={{
               subjects: state.subjects,
               hasSubjects: state.hasSubjects,
+              progress: state.progress,
+              average: state.average,
               setSubjects,
             }}
         >
