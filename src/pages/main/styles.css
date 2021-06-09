@@ -24,6 +24,18 @@
   height: 100%;
 }
 
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.menu-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 /******************* side bar *******************/
 
 /* Position and sizing of burger button */

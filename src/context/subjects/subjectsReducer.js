@@ -2,8 +2,8 @@ import {
   SET_SUBJECTS,
   SET_NODE_DISTANCE,
   SET_ZOOM_DEPTH,
-  SET_ENABLED_DRAG,
-  SET_PULL_IN,
+  CHANGE_ENABLE_DRAG,
+  CHANGE_PULL_IN,
 } from '../../types';
 import { sum } from 'ramda';
 
@@ -47,16 +47,16 @@ export default (state, action) => {
         zoomDepth: action.payload,
       }
     }
-    case SET_ENABLED_DRAG: {
+    case CHANGE_ENABLE_DRAG: {
       return {
         ...state,
-        enabledDrag: action.payload,
+        enableDrag: action.payload,
       }
     }
-    case SET_PULL_IN: {
+    case CHANGE_PULL_IN: {
       return {
         ...state,
-        pullIn: action.payload,
+        pullIn: !state.pullIn,
       }
     }
     default:

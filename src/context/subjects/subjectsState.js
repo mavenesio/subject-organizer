@@ -4,8 +4,8 @@ import {
   SET_SUBJECTS,
   SET_NODE_DISTANCE,
   SET_ZOOM_DEPTH,
-  SET_ENABLED_DRAG,
-  SET_PULL_IN,
+  CHANGE_ENABLE_DRAG,
+  CHANGE_PULL_IN,
 } from '../../types';
 import SubjectsReducer from './subjectsReducer';
 import SubjectsContext from './subjectsContext';
@@ -43,16 +43,15 @@ const SubjectsState = ({children}) => {
             payload: zoomDepth
         })
     };
-    const setEnabledDrag = enabledDrag => {
+    const changeEnableDrag = () => {
         dispatch({
-            type:SET_ENABLED_DRAG,
-            payload: enabledDrag
+            type:CHANGE_ENABLE_DRAG,
+            payload: !state.enableDrag
         })
     };
-    const setPullIn = pullIn => {
+    const changePullIn = () => {
         dispatch({
-            type:SET_PULL_IN,
-            payload: pullIn
+            type:CHANGE_PULL_IN,
         })
     };
     return (
@@ -69,8 +68,8 @@ const SubjectsState = ({children}) => {
               setSubjects,
               setNodeDistance,
               setZoomDepth,
-              setEnabledDrag,
-              setPullIn,
+              changeEnableDrag,
+              changePullIn,
             }}
         >
             {children}
