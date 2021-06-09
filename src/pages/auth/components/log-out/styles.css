@@ -11,3 +11,14 @@
   margin: 1rem;
   font-weight: bold;
 }
+@media (max-width: 1000px) {
+  .button-logout {
+    font-size: 1em;
+  }
+}
+
+@media (max-width: 500px) {
+  .button-logout {
+    font-size: 0.5em;
+  }
+}

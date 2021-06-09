@@ -15,9 +15,8 @@ function LogOut() {
     const logOut = () => {
         auth.signOut().then(res => {
             history.push('/auth');
-            //do something else with res
         }).catch(err => {
-            //do something else with err
+            console.log(err);
         })
     }
 
