@@ -1,11 +1,13 @@
-import React, { useEffect, useState }from 'react';
+import React, { useEffect, useState, useContext}from 'react';
 import Graph from 'react-graph-network';
 import Node from './node';
 import Line from './line';
+import SubjectsContext from '../../../../context/subjects/subjectsContext';
 import { getNodes, getLinks } from './networkUtils';
 
-const NetworkGraph = ({ subjects }) => {
+const NetworkGraph = () => {
   const [data, setData] = useState(undefined);
+  const { subjects } = useContext(SubjectsContext);
   useEffect(() => {
     setData({
       nodes: getNodes(subjects),
@@ -21,7 +23,7 @@ const NetworkGraph = ({ subjects }) => {
             data={data}
             id="graph"
             NodeComponent={Node}
-            LineComponent={(props) => <Line {...props} subjects={subjects}/>}
+            LineComponent={Line}
             nodeDistance={800}
             zoomDepth={10000}
             enableDrag={true}

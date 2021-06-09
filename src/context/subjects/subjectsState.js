@@ -10,6 +10,7 @@ const SubjectsState = ({children}) => {
 
     const initialState = {
         subjects: [],
+        hasSubjects: false,
     };
 
     const [state, dispatch] = useReducer(SubjectsReducer, initialState);
@@ -23,8 +24,9 @@ const SubjectsState = ({children}) => {
     return (
         <SubjectsContext.Provider
             value={{
-                subjects: state.subjects,
-                setSubjects,
+              subjects: state.subjects,
+              hasSubjects: state.hasSubjects,
+              setSubjects,
             }}
         >
             {children}

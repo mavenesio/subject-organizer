@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { FileDrop } from 'react-file-drop';
+import SubjectsContext from '../../../../context/subjects/subjectsContext';
 
 import './FileUpload.css';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,20 +19,21 @@ const checkCorrelatives = (subjects) => {
   })
 }
 
-const FileUpload = ({setSubjects}) => {
-  const [parsedSubject, setParsedSubject] = useState();
+const FileUpload = () => {
+  const [subjects, setSubjects] = useState();
   const [status, setStatus] = useState('NOT_OVER');
+  const subjectsContext = useContext(SubjectsContext);
 
   useEffect(() => {
-    if(parsedSubject){
+    if(subjects){
       try {
-        checkCorrelatives(parsedSubject);
-        setSubjects(parsedSubject);
+        checkCorrelatives(subjects);
+        subjectsContext.setSubjects(subjects)
       }catch (err) {
         toast.error(err.message);
       }
     }
-  }, [parsedSubject]);
+  }, [subjects]);
 
   const loadFile = (file) => {
       if(file.type !== 'text/csv' || file.name.split('.').pop() !== 'csv'){
@@ -73,7 +75,7 @@ const FileUpload = ({setSubjects}) => {
           correlatives: parsedLine[4] ? parsedLine[4].split("-").map(x => x.trim()) : [],
         })
       })
-      setParsedSubject(subjects);
+      setSubjects(subjects);
     } catch (err){
       toast.error(err.message);
     }

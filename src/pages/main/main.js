@@ -1,26 +1,23 @@
 
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import NetworkGraph from './components/network-graph';
-import { getProgress, getAverage } from './components/utils';
 import FileUpload from './components/file-upload';
 import Header from './components/header/header';
+import SubjectsContext from '../../context/subjects/subjectsContext';
 
 import './styles.css';
 
 const Main = () => {
-  const [subjects, setSubjects] = useState([]);
+  const { hasSubjects } = useContext(SubjectsContext);
   return (
     <div className="main-container">
-      <Header
-        progress={(subjects.length) > 0 ? getProgress(subjects) : undefined}
-        average={(subjects.length) > 0 ? getAverage(subjects) : undefined}
-      />
+      <Header />
       <div className="card">
         {
-          subjects.length > 0 ? ( 
-            <NetworkGraph subjects={subjects} />
+          hasSubjects ? ( 
+            <NetworkGraph/>
           ) : (
-            <FileUpload setSubjects={setSubjects}/>
+            <FileUpload/>
           )
         }
       </div>

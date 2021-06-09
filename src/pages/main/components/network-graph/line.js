@@ -1,7 +1,10 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useContext } from 'react';
 import { getLineColor } from './networkUtils';
+import SubjectsContext from '../../../../context/subjects/subjectsContext';
 
-const Line = ({ link, subjects, ...restProps }) => {
+const Line = ({ link, ...restProps }) => {
+  const { subjects } = useContext(SubjectsContext);
+
   const memoizedValue = useMemo(() => getLineColor(subjects, link), []);
   return (
     <line
