@@ -2,6 +2,10 @@ import React, {useReducer} from 'react';
 
 import {
   SET_SUBJECTS,
+  SET_NODE_DISTANCE,
+  SET_ZOOM_DEPTH,
+  SET_ENABLED_DRAG,
+  SET_PULL_IN,
 } from '../../types';
 import SubjectsReducer from './subjectsReducer';
 import SubjectsContext from './subjectsContext';
@@ -13,14 +17,42 @@ const SubjectsState = ({children}) => {
         hasSubjects: false,
         progress: '-',
         average: '-',
+        nodeDistance: 800,
+        zoomDepth: 10000,
+        enableDrag: true,
+        pullIn: false,
     };
 
     const [state, dispatch] = useReducer(SubjectsReducer, initialState);
 
     const setSubjects = subjects => {
+      dispatch({
+          type:SET_SUBJECTS,
+          payload: subjects
+      })
+    };
+    const setNodeDistance = nodeDistance => {
         dispatch({
-            type:SET_SUBJECTS,
-            payload: subjects
+            type:SET_NODE_DISTANCE,
+            payload: nodeDistance
+        })
+    };
+    const setZoomDepth = zoomDepth => {
+        dispatch({
+            type:SET_ZOOM_DEPTH,
+            payload: zoomDepth
+        })
+    };
+    const setEnabledDrag = enabledDrag => {
+        dispatch({
+            type:SET_ENABLED_DRAG,
+            payload: enabledDrag
+        })
+    };
+    const setPullIn = pullIn => {
+        dispatch({
+            type:SET_PULL_IN,
+            payload: pullIn
         })
     };
     return (
@@ -30,7 +62,15 @@ const SubjectsState = ({children}) => {
               hasSubjects: state.hasSubjects,
               progress: state.progress,
               average: state.average,
+              nodeDistance: state.nodeDistance,
+              zoomDepth: state.zoomDepth,
+              enableDrag: state.enableDrag,
+              pullIn: state.pullIn,
               setSubjects,
+              setNodeDistance,
+              setZoomDepth,
+              setEnabledDrag,
+              setPullIn,
             }}
         >
             {children}

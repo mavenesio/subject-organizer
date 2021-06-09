@@ -1,1 +1,5 @@
 export const SET_SUBJECTS = 'SET_SUBJECTS';
+export const SET_NODE_DISTANCE = 'SET_NODE_DISTANCE';
+export const SET_ZOOM_DEPTH = 'SET_ZOOM_DEPTH';
+export const SET_ENABLED_DRAG = 'SET_ENABLED_DRAG';
+export const SET_PULL_IN = 'SET_PULL_IN';

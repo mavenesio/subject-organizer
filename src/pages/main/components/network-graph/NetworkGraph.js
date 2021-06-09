@@ -7,7 +7,7 @@ import { getNodes, getLinks } from './networkUtils';
 
 const NetworkGraph = () => {
   const [data, setData] = useState(undefined);
-  const { subjects } = useContext(SubjectsContext);
+  const { subjects, nodeDistance, zoomDepth, enableDrag, pullIn } = useContext(SubjectsContext);
   useEffect(() => {
     setData({
       nodes: getNodes(subjects),
@@ -24,10 +24,10 @@ const NetworkGraph = () => {
             id="graph"
             NodeComponent={Node}
             LineComponent={Line}
-            nodeDistance={800}
-            zoomDepth={10000}
-            enableDrag={true}
-            pullIn={false}
+            nodeDistance={nodeDistance}
+            zoomDepth={zoomDepth}
+            enableDrag={enableDrag}
+            pullIn={pullIn}
           />
 
         ) : (null)
