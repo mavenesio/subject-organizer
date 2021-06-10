@@ -36,6 +36,21 @@
   justify-content: center;
 }
 
+/******************* slider *******************/
+.slider-horizontal > .rangeslider__fill {
+  background-color: #008800;
+}
+
+.slider-horizontal > .rangeslider-horizontal {
+  border-radius: unset;
+  width: 15px;
+}
+.slider-horizontal > .rangeslider-horizontal,
+.rangeslider__handle:after {
+  display: none;
+}
+/******************* slider *******************/
+
 /******************* side bar *******************/
 
 /* Position and sizing of burger button */

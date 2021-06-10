@@ -6,6 +6,7 @@ import Header from './components/header/header';
 import SubjectsContext from '../../context/subjects/subjectsContext';
 import { scaleRotate as Menu} from 'react-burger-menu';
 import Switch from "react-switch";
+import Slider from 'react-rangeslider'
 import './styles.css'
 
 const Main = () => {
@@ -13,10 +14,15 @@ const Main = () => {
     hasSubjects,
     changeEnableDrag,
     changePullIn,
+    setNodeDistance,
+    setZoomDepth,
     enableDrag,
-    pullIn
+    pullIn,
+    nodeDistance,
+    zoomDepth,
   } = useContext(SubjectsContext);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [zoom, setzoom] = useState(0);
   
   useEffect(() => {
     console.log(enableDrag);
@@ -42,13 +48,47 @@ const Main = () => {
             </label>
           </div>  
           <div className="menu-item">
-          <h3 className="menu-item-title">
-            Pull in
-          </h3>
-          <label>
-            <Switch onChange={() => changePullIn()} checked={pullIn} />
-          </label>
-        </div>
+            <h3 className="menu-item-title">
+              Pull in
+            </h3>
+            <label>
+              <Switch onChange={() => changePullIn()} checked={pullIn} />
+            </label>
+          </div>
+          <div className="menu-item">
+            <h3 className="menu-item-title">
+              Zoom
+            </h3>
+            <label>
+              <Slider
+                id="1"
+                className="slider-horizontal"
+                value={zoomDepth}
+                orientation="horizontal"
+                onChange={setZoomDepth}
+                min={0}
+                max={10000}
+              />
+            </label>
+          </div>
+          <div className="menu-item">
+            <h3 className="menu-item-title">
+              Node distance
+            </h3>
+            <label>
+              <Slider
+                id="2"
+                className="slider-horizontal"
+                value={nodeDistance}
+                orientation="horizontal"
+                onChange={setNodeDistance}
+                min={0}
+                max={10000}
+              />
+            </label>
+          </div>
+
+
         </div>
       </Menu>
         <Header />
