@@ -19,6 +19,7 @@
     "react-scripts": "4.0.3",
     "react-switch": "^6.0.0",
     "react-toastify": "^7.0.4",
+    "react-vis-network-graph": "^3.0.1",
     "web-vitals": "^1.1.2"
   },
   "scripts": {

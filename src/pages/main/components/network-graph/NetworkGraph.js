@@ -1,38 +1,39 @@
 import React, { useEffect, useState, useContext}from 'react';
-import Graph from 'react-graph-network';
-import Node from './node';
-import Line from './line';
 import SubjectsContext from '../../../../context/subjects/subjectsContext';
-import { getNodes, getLinks } from './networkUtils';
+import { getData, getOptions } from './networkUtils';
+import Graph from "react-vis-network-graph";
+
 
 const NetworkGraph = () => {
   const [data, setData] = useState(undefined);
-  const { subjects, nodeDistance, zoomDepth, enableDrag, pullIn } = useContext(SubjectsContext);
+  const { subjects } = useContext(SubjectsContext);
   useEffect(() => {
-    setData({
-      nodes: getNodes(subjects),
-      links: getLinks(subjects),
-    })
+    setData(getData(subjects))
   }, [subjects]);
+
+  const events = {
+    select: ({ nodes, edges }) => {
+      console.log("Selected nodes:");
+      console.log(nodes);
+      console.log("Selected edges:");
+      console.log(edges);
+      alert("Selected node: " + nodes);
+    },
+  }
   
   return (
     <>
       {
         data ? (
           <Graph
-            data={data}
-            id="graph"
-            NodeComponent={Node}
-            LineComponent={Line}
-            nodeDistance={nodeDistance}
-            zoomDepth={zoomDepth}
-            enableDrag={enableDrag}
-            pullIn={pullIn}
-          />
-
+            graph={data}
+            options={getOptions()}
+            events={events}
+            style={{ height: "100%", width: "100%" }} />
         ) : (null)
       }
     </>
   )
 }
+
 export default NetworkGraph;

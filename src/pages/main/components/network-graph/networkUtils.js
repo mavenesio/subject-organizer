@@ -22,8 +22,7 @@ const getNodeColor = (subjects, subject) => {
   return NOT_AVAILABLE_SUBJECT_COLOR;
 }
 
-const getLineColor = (subjects, { source, target }) => {
-
+const getLineColor = (subjects, source, target) => {
   const passSource = isSubjectApproved(getSubjectByCode(subjects, source))
   const passtarget = isSubjectApproved(getSubjectByCode(subjects, target));
 
@@ -35,25 +34,45 @@ const getLineColor = (subjects, { source, target }) => {
 const getNodes = (subjects) => (
   subjects.map(subject => ({
       id: subject.code,
-      name: subject.name,
+      label: subject.code,
+      borderWidth: 2,
       color: getNodeColor(subjects, subject),
       pass: isSubjectApproved(subject),
     })
   )
 )
 
-const getLinks = (subjects) => (
+const getEdges = (subjects) => (
   subjects.reduce((links, subject) => {
     const newLinks = subject.correlatives.map(correlative => ({
-        source: subject.code,
-        target: correlative,
+        from: subject.code,
+        to: correlative,
+        color: getLineColor(subjects, subject.code, correlative),
+        arrows: {to: {enabled : false}, from: {enabled : false}},
+        width: 3,
     }))
     return [...links, ...newLinks];
   },[])
 )
 
+const getData = (subjects) => {
+  const edges = getEdges(subjects);
+  const nodes = getNodes(subjects);
+  return ({ nodes, edges})
+}
+
+const getOptions = () => {
+  return {
+    layout: {
+      hierarchical: false
+    },
+    edges: {
+      color: "#000000"
+    }
+  };
+}
+
 export {
-  getLineColor,
-  getLinks,
-  getNodes,
+  getData,
+  getOptions,
 }
