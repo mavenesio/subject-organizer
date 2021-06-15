@@ -1,9 +1,5 @@
 import {
   SET_SUBJECTS,
-  SET_NODE_DISTANCE,
-  SET_ZOOM_DEPTH,
-  CHANGE_ENABLE_DRAG,
-  CHANGE_PULL_IN,
 } from '../../types';
 import { sum } from 'ramda';
 
@@ -23,7 +19,7 @@ const getAverage = (subjects) => {
   return (Math.round((sum(aprobadas)/aprobadas.length)))
 }
 
-// eslint-disable-next-line import/no-anonymous-default-export
+// eslint-disable-next-line import/no-anonymous-default-export 
 export default (state, action) => {
   switch (action.type) {
     case SET_SUBJECTS: {
@@ -33,30 +29,6 @@ export default (state, action) => {
         hasSubjects: true,
         progress: getProgress(action.payload),
         average: getAverage(action.payload),
-      }
-    }
-    case SET_NODE_DISTANCE: {
-      return {
-        ...state,
-        nodeDistance: action.payload,
-      }
-    }
-    case SET_ZOOM_DEPTH: {
-      return {
-        ...state,
-        zoomDepth: action.payload,
-      }
-    }
-    case CHANGE_ENABLE_DRAG: {
-      return {
-        ...state,
-        enableDrag: action.payload,
-      }
-    }
-    case CHANGE_PULL_IN: {
-      return {
-        ...state,
-        pullIn: !state.pullIn,
       }
     }
     default:
