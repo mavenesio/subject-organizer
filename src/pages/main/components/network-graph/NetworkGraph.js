@@ -6,18 +6,14 @@ import Graph from "react-vis-network-graph";
 
 const NetworkGraph = () => {
   const [data, setData] = useState(undefined);
-  const { subjects } = useContext(SubjectsContext);
+  const { subjects, setSelectedSubject } = useContext(SubjectsContext);
   useEffect(() => {
     setData(getData(subjects))
   }, [subjects]);
 
   const events = {
-    select: ({ nodes, edges }) => {
-      console.log("Selected nodes:");
-      console.log(nodes);
-      console.log("Selected edges:");
-      console.log(edges);
-      alert("Selected node: " + nodes);
+    select: ({ nodes }) => {
+      setSelectedSubject(subjects.find(subject => subject.code === nodes[0]))
     },
   }
   

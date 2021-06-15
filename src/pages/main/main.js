@@ -4,20 +4,22 @@ import NetworkGraph from './components/network-graph';
 import FileUpload from './components/file-upload';
 import Header from './components/header/header';
 import SubjectsContext from '../../context/subjects/subjectsContext';
-import { scaleRotate as Menu} from 'react-burger-menu';
+import { slide as Menu} from 'react-burger-menu';
 import './styles.css'
 
 const Main = () => {
   const {
     hasSubjects,
-    changeEnableDrag,
-    enableDrag,
-s  } = useContext(SubjectsContext);
-  const [menuOpen, setMenuOpen] = useState(false);
+    selectedSubject,
+    setSelectedSubject
+  } = useContext(SubjectsContext);
+  const [areMenusOpen, setAreMenusOpen] = useState(false);
   
   useEffect(() => {
-    console.log(enableDrag);
-  }, [enableDrag]);
+    if(selectedSubject){
+      setAreMenusOpen(true);
+    }
+  }, [selectedSubject]);
 
   return (
     <div
@@ -25,16 +27,23 @@ s  } = useContext(SubjectsContext);
       id="outer-container"
     >
       <Menu
-        pageWrapId={ "page-wrap" } outerContainerId={ "outer-container" }
-        onStateChange={ setMenuOpen }
+        isOpen={areMenusOpen}
+        onClose={ () => {setAreMenusOpen(false);setSelectedSubject(null)} }
+        pageWrapId={ "page-wrap" }
+        outerContainerId={ "outer-container" }
+        width={ '50vw' }
         pushRotate
       >
         <div className="menu-items">
-          <div className="menu-item">
-            <h3 className="menu-item-title">
-              Pull in
-            </h3>
-          </div>
+          {
+            selectedSubject ? (
+              <div className="menu-item">
+                <h3 className="menu-item-title">
+                  {`[${selectedSubject.code}]${selectedSubject.name}`}
+                </h3>
+              </div>
+            ) : null
+          }
         </div>
       </Menu>
         <Header />

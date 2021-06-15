@@ -2,6 +2,7 @@ import React, {useReducer} from 'react';
 
 import {
   SET_SUBJECTS,
+  SET_SELECTED_SUBJECTS,
 } from '../../types';
 import SubjectsReducer from './subjectsReducer';
 import SubjectsContext from './subjectsContext';
@@ -11,6 +12,7 @@ const SubjectsState = ({children}) => {
     const initialState = {
         subjects: [],
         hasSubjects: false,
+        selectedSubject: null,
         progress: '-',
         average: '-',
     };
@@ -23,6 +25,13 @@ const SubjectsState = ({children}) => {
           payload: subjects
       })
     };
+
+    const setSelectedSubject = subject => {
+      dispatch({
+          type:SET_SELECTED_SUBJECTS,
+          payload: subject
+      })
+    };
     
     return (
         <SubjectsContext.Provider
@@ -31,7 +40,9 @@ const SubjectsState = ({children}) => {
               hasSubjects: state.hasSubjects,
               progress: state.progress,
               average: state.average,
+              selectedSubject: state.selectedSubject,
               setSubjects,
+              setSelectedSubject,
             }}
         >
             {children}

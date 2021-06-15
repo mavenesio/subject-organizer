@@ -1,5 +1,6 @@
 import {
   SET_SUBJECTS,
+  SET_SELECTED_SUBJECTS,
 } from '../../types';
 import { sum } from 'ramda';
 
@@ -29,6 +30,12 @@ export default (state, action) => {
         hasSubjects: true,
         progress: getProgress(action.payload),
         average: getAverage(action.payload),
+      }
+    }
+    case SET_SELECTED_SUBJECTS: {
+      return {
+        ...state,
+        selectedSubject: action.payload,
       }
     }
     default:
