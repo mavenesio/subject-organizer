@@ -37,12 +37,31 @@ const Main = () => {
         <div className="menu-items">
           {
             selectedSubject ? (
-              <div className="menu-item">
-                <h3 className="menu-item-title">
-                  {`[${selectedSubject.code}]${selectedSubject.name}`}
-                </h3>
-              </div>
+              <>
+                <div className="menu-item">
+                  <h3 className="menu-item-title">
+                    {`[${selectedSubject.code}]${selectedSubject.name}`}
+                  </h3>
+                </div>
+                {console.log(selectedSubject)}
+                <div className="menu-item">
+                  <h3 className="menu-item-title">
+                    {`Nota: ${selectedSubject.grade}`}
+                  </h3>
+                </div>
+                <div className="menu-item">
+                  <h3 className="menu-item-title">
+                    {`Creditos: ${selectedSubject.credits}`}
+                  </h3>
+                </div>
+                <div className="menu-item">
+                  <h3 className="menu-item-title">
+                    {`Correlativas: ${selectedSubject.correlatives.join(" - ")}`}
+                  </h3>
+                </div>
+              </>
             ) : null
+            
           }
         </div>
       </Menu>
