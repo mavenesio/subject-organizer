@@ -36,6 +36,17 @@
   justify-content: center;
 }
 
+@media (max-width: 800px) {
+  .menu-items {
+    font-size: 1rem;
+    text-align: center;
+  }
+  .bm-menu {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
 /******************* slider *******************/
 .slider-horizontal > .rangeslider__fill {
   background-color: #008800;

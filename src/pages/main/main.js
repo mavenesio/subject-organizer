@@ -43,7 +43,6 @@ const Main = () => {
                     {`[${selectedSubject.code}]${selectedSubject.name}`}
                   </h3>
                 </div>
-                {console.log(selectedSubject)}
                 <div className="menu-item">
                   <h3 className="menu-item-title">
                     {`Nota: ${selectedSubject.grade}`}
